@@ -1,42 +1,42 @@
-import Matricula from '../models/Reserva.js';
+import Reserva from '../models/Reserva.js';
 
-export const getMatriculas = async (req, res) => {
+export const getReservas = async (req, res) => {
     try {
         // Poblamos para devolver los datos relevantes de Materia y Estudiante
-        const matriculas = await Matricula.find()
+        const reservas = await Reserva.find()
             .populate('materia', 'nombre codigo creditos')
             .populate('estudiante', 'nombre apellido cedula');
-        res.json(matriculas);
+        res.json(reservas);
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error al obtener matrículas', error: error.message });
+        res.status(500).json({ mensaje: 'Error al obtener reservas', error: error.message });
     }
 };
 
-export const getMatriculaById = async (req, res) => {
+export const getReservaById = async (req, res) => {
     try {
-        const matricula = await Matricula.findById(req.params.id)
+        const reserva = await Reserva.findById(req.params.id)
             .populate('materia', 'nombre codigo creditos')
             .populate('estudiante', 'nombre apellido cedula');
-        if (!matricula) return res.status(404).json({ mensaje: 'Matrícula no encontrada' });
-        res.json(matricula);
+        if (!reserva) return res.status(404).json({ mensaje: 'Reserva no encontrada' });
+        res.json(reserva);
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error al obtener matrícula', error: error.message });
+        res.status(500).json({ mensaje: 'Error al obtener reserva', error: error.message });
     }
 };
 
-export const createMatricula = async (req, res) => {
+export const createReserva = async (req, res) => {
     try {
-        const nuevaMatricula = new Matricula(req.body);
-        await nuevaMatricula.save();
-        res.status(201).json(nuevaMatricula);
+        const nuevaReserva = new Reserva(req.body);
+        await nuevaReserva.save();
+        res.status(201).json(nuevaReserva);
     } catch (error) {
-        res.status(400).json({ mensaje: 'Error al crear matrícula', error: error.message });
+        res.status(400).json({ mensaje: 'Error al crear reserva', error: error.message });
     }
 };
 
-export const updateMatricula = async (req, res) => {
+export const updateReserva = async (req, res) => {
     try {
-        const matriculaActualizada = await Matricula.findByIdAndUpdate(
+        const reservaActualizada = await Reserva.findByIdAndUpdate(
             req.params.id,
             req.body,
             { new: true, runValidators: true }
@@ -44,19 +44,19 @@ export const updateMatricula = async (req, res) => {
             .populate('materia', 'nombre codigo creditos')
             .populate('estudiante', 'nombre apellido cedula');
 
-        if (!matriculaActualizada) return res.status(404).json({ mensaje: 'Matrícula no encontrada' });
-        res.json(matriculaActualizada);
+        if (!reservaActualizada) return res.status(404).json({ mensaje: 'Reserva no encontrada' });
+        res.json(reservaActualizada);
     } catch (error) {
-        res.status(400).json({ mensaje: 'Error al actualizar matrícula', error: error.message });
+        res.status(400).json({ mensaje: 'Error al actualizar reserva', error: error.message });
     }
 };
 
-export const deleteMatricula = async (req, res) => {
+export const deleteReserva = async (req, res) => {
     try {
-        const matriculaEliminada = await Matricula.findByIdAndDelete(req.params.id);
-        if (!matriculaEliminada) return res.status(404).json({ mensaje: 'Matrícula no encontrada' });
-        res.json({ mensaje: 'Matrícula eliminada correctamente' });
+        const reservaEliminada = await Reserva.findByIdAndDelete(req.params.id);
+        if (!reservaEliminada) return res.status(404).json({ mensaje: 'Reserva no encontrada' });
+        res.json({ mensaje: 'Reserva eliminada correctamente' });
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error al eliminar matrícula', error: error.message });
+        res.status(500).json({ mensaje: 'Error al eliminar reserva', error: error.message });
     }
 };

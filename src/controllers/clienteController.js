@@ -1,54 +1,54 @@
-import Estudiante from '../models/Cliente.js';
+import Cliente from '../models/Cliente.js';
 
-export const getEstudiantes = async (req, res) => {
+export const getClientes = async (req, res) => {
     try {
-        const estudiantes = await Estudiante.find();
-        res.json(estudiantes);
+        const clientes = await Cliente.find();
+        res.json(clientes);
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error al obtener estudiantes', error: error.message });
+        res.status(500).json({ mensaje: 'Error al obtener clientes', error: error.message });
     }
 };
 
-export const getEstudianteById = async (req, res) => {
+export const getClienteById = async (req, res) => {
     try {
-        const estudiante = await Estudiante.findById(req.params.id);
-        if (!estudiante) return res.status(404).json({ mensaje: 'Estudiante no encontrado' });
-        res.json(estudiante);
+        const cliente = await Cliente.findById(req.params.id);
+        if (!cliente) return res.status(404).json({ mensaje: 'Cliente no encontrado' });
+        res.json(cliente);
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error al obtener estudiante', error: error.message });
+        res.status(500).json({ mensaje: 'Error al obtener cliente', error: error.message });
     }
 };
 
-export const createEstudiante = async (req, res) => {
+export const createCliente = async (req, res) => {
     try {
-        const nuevoEstudiante = new Estudiante(req.body);
-        await nuevoEstudiante.save();
-        res.status(201).json(nuevoEstudiante);
+        const nuevoCliente = new Cliente(req.body);
+        await nuevoCliente.save();
+        res.status(201).json(nuevoCliente);
     } catch (error) {
-        res.status(400).json({ mensaje: 'Error al crear estudiante', error: error.message });
+        res.status(400).json({ mensaje: 'Error al crear cliente', error: error.message });
     }
 };
 
-export const updateEstudiante = async (req, res) => {
+export const updateCliente = async (req, res) => {
     try {
-        const estudianteActualizado = await Estudiante.findByIdAndUpdate(
+        const clienteActualizado = await Cliente.findByIdAndUpdate(
             req.params.id,
             req.body,
             { new: true, runValidators: true }
         );
-        if (!estudianteActualizado) return res.status(404).json({ mensaje: 'Estudiante no encontrado' });
-        res.json(estudianteActualizado);
+        if (!clienteActualizado) return res.status(404).json({ mensaje: 'Cliente no encontrado' });
+        res.json(clienteActualizado);
     } catch (error) {
-        res.status(400).json({ mensaje: 'Error al actualizar estudiante', error: error.message });
+        res.status(400).json({ mensaje: 'Error al actualizar cliente', error: error.message });
     }
 };
 
-export const deleteEstudiante = async (req, res) => {
+export const deleteCliente = async (req, res) => {
     try {
-        const estudianteEliminado = await Estudiante.findByIdAndDelete(req.params.id);
-        if (!estudianteEliminado) return res.status(404).json({ mensaje: 'Estudiante no encontrado' });
-        res.json({ mensaje: 'Estudiante eliminado correctamente' });
+        const clienteEliminado = await Cliente.findByIdAndDelete(req.params.id);
+        if (!clienteEliminado) return res.status(404).json({ mensaje: 'Cliente no encontrado' });
+        res.json({ mensaje: 'Cliente eliminado correctamente' });
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error al eliminar estudiante', error: error.message });
+        res.status(500).json({ mensaje: 'Error al eliminar cliente', error: error.message });
     }
 };
