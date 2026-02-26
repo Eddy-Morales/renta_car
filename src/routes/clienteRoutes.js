@@ -1,25 +1,25 @@
 import express from 'express';
 import {
-    getEstudiantes,
-    getEstudianteById,
-    createEstudiante,
-    updateEstudiante,
-    deleteEstudiante
-} from '../controllers/estudianteController.js';
+    getClientes,
+    getClienteById,
+    createCliente,
+    updateCliente,
+    deleteCliente
+} from '../controllers/clienteController.js';
 import { protectRoute } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-// Todas las rutas de estudiantes requieren autenticación
+// Todas las rutas de clientes requieren autenticación
 router.use(protectRoute);
 
 router.route('/')
-    .get(getEstudiantes)
-    .post(createEstudiante);
+    .get(getClientes)
+    .post(createCliente);
 
 router.route('/:id')
-    .get(getEstudianteById)
-    .put(updateEstudiante)
-    .delete(deleteEstudiante);
+    .get(getClienteById)
+    .put(updateCliente)
+    .delete(deleteCliente);
 
 export default router;

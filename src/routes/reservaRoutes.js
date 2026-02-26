@@ -1,25 +1,25 @@
 import express from 'express';
 import {
-    getMatriculas,
-    getMatriculaById,
-    createMatricula,
-    updateMatricula,
-    deleteMatricula
-} from '../controllers/matriculaController.js';
+    getReservas,
+    getReservaById,
+    createReserva,
+    updateReserva,
+    deleteReserva
+} from '../controllers/reservaController.js';
 import { protectRoute } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-// Todas las rutas de matrículas requieren autenticación
+// Todas las rutas de reservas requieren autenticación
 router.use(protectRoute);
 
 router.route('/')
-    .get(getMatriculas)
-    .post(createMatricula);
+    .get(getReservas)
+    .post(createReserva);
 
 router.route('/:id')
-    .get(getMatriculaById)
-    .put(updateMatricula)
-    .delete(deleteMatricula);
+    .get(getReservaById)
+    .put(updateReserva)
+    .delete(deleteReserva);
 
 export default router;

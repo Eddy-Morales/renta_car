@@ -1,25 +1,25 @@
 import express from 'express';
 import {
-    getMaterias,
-    getMateriaById,
-    createMateria,
-    updateMateria,
-    deleteMateria
-} from '../controllers/materiaController.js';
+    getVehiculos,
+    getVehiculoById,
+    createVehiculo,
+    updateVehiculo,
+    deleteVehiculo
+} from '../controllers/vehiculoController.js';
 import { protectRoute } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-// Todas las rutas de materias requieren autenticación
+// Todas las rutas de vehículos requieren autenticación
 router.use(protectRoute);
 
 router.route('/')
-    .get(getMaterias)
-    .post(createMateria);
+    .get(getVehiculos)
+    .post(createVehiculo);
 
 router.route('/:id')
-    .get(getMateriaById)
-    .put(updateMateria)
-    .delete(deleteMateria);
+    .get(getVehiculoById)
+    .put(updateVehiculo)
+    .delete(deleteVehiculo);
 
 export default router;
