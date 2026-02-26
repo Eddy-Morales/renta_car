@@ -41,8 +41,8 @@ export const updateReserva = async (req, res) => {
             req.body,
             { new: true, runValidators: true }
         )
-            .populate('materia', 'nombre codigo creditos')
-            .populate('estudiante', 'nombre apellido cedula');
+            .populate('vehiculo', 'marca modelo placa')
+            .populate('cliente', 'nombre apellido cedula')
 
         if (!reservaActualizada) return res.status(404).json({ mensaje: 'Reserva no encontrada' });
         res.json(reservaActualizada);
