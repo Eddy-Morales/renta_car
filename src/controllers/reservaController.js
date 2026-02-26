@@ -4,8 +4,8 @@ export const getReservas = async (req, res) => {
     try {
         // Poblamos para devolver los datos relevantes de Materia y Estudiante
         const reservas = await Reserva.find()
-            .populate('materia', 'nombre codigo creditos')
-            .populate('estudiante', 'nombre apellido cedula');
+            .populate('vehiculo', 'marca modelo placa')
+            .populate('cliente', 'nombre apellido cedula')
         res.json(reservas);
     } catch (error) {
         res.status(500).json({ mensaje: 'Error al obtener reservas', error: error.message });
@@ -15,8 +15,8 @@ export const getReservas = async (req, res) => {
 export const getReservaById = async (req, res) => {
     try {
         const reserva = await Reserva.findById(req.params.id)
-            .populate('materia', 'nombre codigo creditos')
-            .populate('estudiante', 'nombre apellido cedula');
+            .populate('vehiculo', 'marca modelo placa')
+            .populate('cliente', 'nombre apellido cedula')
         if (!reserva) return res.status(404).json({ mensaje: 'Reserva no encontrada' });
         res.json(reserva);
     } catch (error) {
