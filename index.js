@@ -5,9 +5,9 @@ import connectDB from './src/config/db.js';
 
 // Importar rutas
 import authRoutes from './src/routes/authRoutes.js';
-import materiaRoutes from './src/routes/materiaRoutes.js';
-import estudianteRoutes from './src/routes/estudianteRoutes.js';
-import matriculaRoutes from './src/routes/matriculaRoutes.js';
+import materiaRoutes from './src/routes/vehiculoRoutes.js';
+import estudianteRoutes from './src/routes/clienteRoutes.js';
+import matriculaRoutes from './src/routes/reservaRoutes.js';
 
 // Configuración inicial
 dotenv.config();
@@ -23,9 +23,9 @@ app.use(express.json());
 
 // Rutas API
 app.use('/api/auth', authRoutes);
-app.use('/api/materias', materiaRoutes);
-app.use('/api/estudiantes', estudianteRoutes);
-app.use('/api/matriculas', matriculaRoutes);
+app.use('/api/vehiculos', materiaRoutes);
+app.use('/api/clientes', estudianteRoutes);
+app.use('/api/reservas', matriculaRoutes);
 
 // Ruta base
 app.get('/', (req, res) => {
