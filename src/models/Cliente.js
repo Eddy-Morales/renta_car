@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const estudianteSchema = new mongoose.Schema({
+const clienteSchema = new mongoose.Schema({
     nombre: { type: String, required: true },
     apellido: { type: String, required: true },
     cedula: { type: String, required: true, unique: true },
@@ -13,5 +13,5 @@ const estudianteSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const Estudiante = mongoose.model('Estudiante', estudianteSchema);
-export default Estudiante;
+const Cliente = mongoose.model('Cliente', clienteSchema);
+export default Cliente;

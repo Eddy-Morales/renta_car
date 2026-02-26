@@ -1,22 +1,22 @@
 import mongoose from 'mongoose';
 
-const matriculaSchema = new mongoose.Schema({
+const reservaSchema = new mongoose.Schema({
     codigo: { type: String, required: true, unique: true },
     descripcion: { type: String },
-    creditos: { type: Number, required: true },
-    materia: {
+    
+    vehiculo: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Materia',
+        ref: 'Vehiculo',
         required: true
     },
-    estudiante: {
+    cliente: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Estudiante',
+        ref: 'Cliente',
         required: true
     }
 }, {
     timestamps: true
 });
 
-const Matricula = mongoose.model('Matricula', matriculaSchema);
-export default Matricula;
+const Reserva = mongoose.model('Reserva', reservaSchema);
+export default Reserva;

@@ -1,13 +1,17 @@
 import mongoose from 'mongoose';
 
-const materiaSchema = new mongoose.Schema({
+const vehiculoSchema = new mongoose.Schema({
     marca: { type: String, required: true },
-    modelo: { type: String, required: true, unique: true },
+    modelo: { type: String, required: true},
+    anio_fabricacion: { type: Number, required: true },
+    placa: { type: String, required: true, unique: true },
+    color: { type: String },
+    tipo_vehiculo: { type: String, required: true },
+    kilometraje: { type: Number, required: true },
     descripcion: { type: String },
-    creditos: { type: Number, required: true }
 }, {
     timestamps: true
 });
 
-const Materia = mongoose.model('Materia', materiaSchema);
-export default Materia;
+const Vehiculo = mongoose.model('Vehiculo', vehiculoSchema);
+export default Vehiculo;
